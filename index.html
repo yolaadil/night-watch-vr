@@ -10,39 +10,36 @@
 
 <a-scene>
 
-  <!-- PAINTING + HOTSPOTS GROUP -->
-  <a-entity id="paintingGroup" scale="1 1 1">
+  <a-image
+    src="painting.jpg"
+    position="0 1.6 -3"
+    width="4"
+    height="3.45">
+  </a-image>
 
-    <!-- Painting -->
-    <a-image
-      src="painting.jpg"
-      position="0 1.6 -3"
-      width="4"
-      height="3.45">
-    </a-image>
+  <!-- HOTSPOTS -->
+  <a-plane class="hotspot" id="captain" position="-0.05 1.35 -2.95" width="0.35" height="0.75" material="color:yellow; opacity:0; transparent:true"></a-plane>
+  <a-plane class="hotspot" id="lieutenant" position="0.45 1.30 -2.95" width="0.35" height="0.80" material="color:cyan; opacity:0; transparent:true"></a-plane>
+  <a-plane class="hotspot" id="girl" position="-0.80 1.18 -2.95" width="0.32" height="0.60" material="color:yellow; opacity:0; transparent:true"></a-plane>
+  <a-plane class="hotspot" id="drummer" position="1.75 1.25 -2.95" width="0.38" height="0.80" material="color:yellow; opacity:0; transparent:true"></a-plane>
 
-    <!-- HOTSPOTS -->
-    <a-plane class="hotspot" id="captain" position="-0.05 1.35 -2.95" width="0.35" height="0.75" material="color:yellow; opacity:0; transparent:true"></a-plane>
-    <a-plane class="hotspot" id="lieutenant" position="0.45 1.30 -2.95" width="0.35" height="0.80" material="color:cyan; opacity:0; transparent:true"></a-plane>
-    <a-plane class="hotspot" id="girl" position="-0.80 1.18 -2.95" width="0.32" height="0.60" material="color:yellow; opacity:0; transparent:true"></a-plane>
-    <a-plane class="hotspot" id="drummer" position="1.75 1.25 -2.95" width="0.38" height="0.80" material="color:yellow; opacity:0; transparent:true"></a-plane>
-    <a-plane class="hotspot" id="flag" position="-1.15 1.80 -2.95" width="0.80" height="1.80" material="color:yellow; opacity:0; transparent:true"></a-plane>
-    <a-plane class="hotspot" id="musketeer" position="-1.10 1.45 -2.95" width="0.35" height="0.65" material="color:yellow; opacity:0; transparent:true"></a-plane>
-    <a-plane class="hotspot" id="dog" position="0.95 0.75 -2.95" width="0.35" height="0.25" material="color:yellow; opacity:0; transparent:true"></a-plane>
-    <a-plane class="hotspot" id="leftGroup" position="-1.55 1.55 -2.95" width="0.45" height="0.90" material="color:yellow; opacity:0; transparent:true"></a-plane>
-    <a-plane class="hotspot" id="rightGroup" position="1.35 1.60 -2.95" width="0.50" height="0.80" material="color:yellow; opacity:0; transparent:true"></a-plane>
-    <a-plane class="hotspot" id="backgroundArch" position="0.45 2.25 -2.95" width="0.80" height="0.55" material="color:yellow; opacity:0; transparent:true"></a-plane>
+  <!-- Wider flag hotspot, less overlap with left group -->
+  <a-plane class="hotspot" id="flag" position="-1.08 1.95 -2.95" width="0.95" height="0.65" material="color:yellow; opacity:0; transparent:true"></a-plane>
 
-  </a-entity>
+  <a-plane class="hotspot" id="musketeer" position="-1.10 1.45 -2.95" width="0.35" height="0.65" material="color:yellow; opacity:0; transparent:true"></a-plane>
+  <a-plane class="hotspot" id="dog" position="0.95 0.75 -2.95" width="0.35" height="0.25" material="color:yellow; opacity:0; transparent:true"></a-plane>
+  <a-plane class="hotspot" id="leftGroup" position="-1.55 1.55 -2.95" width="0.42" height="0.75" material="color:yellow; opacity:0; transparent:true"></a-plane>
+  <a-plane class="hotspot" id="rightGroup" position="1.35 1.60 -2.95" width="0.50" height="0.80" material="color:yellow; opacity:0; transparent:true"></a-plane>
+  <a-plane class="hotspot" id="backgroundArch" position="0.45 2.25 -2.95" width="0.80" height="0.55" material="color:yellow; opacity:0; transparent:true"></a-plane>
 
   <!-- INFO PANEL -->
   <a-plane
     id="infoPanel"
     visible="false"
     position="0 0 -2.8"
-    width="1.8"
-    height="0.9"
-    color="#222">
+    width="1.55"
+    height="0.72"
+    material="color:#111; opacity:0.72; transparent:true">
   </a-plane>
 
   <a-text
@@ -50,40 +47,7 @@
     visible="false"
     value=""
     position="0 0 -2.75"
-    width="1.6"
-    color="white">
-  </a-text>
-
-  <!-- ZOOM CONTROLS -->
-  <a-plane
-    id="zoomIn"
-    class="control"
-    position="-0.55 0.25 -2.7"
-    width="0.5"
-    height="0.28"
-    color="#333">
-  </a-plane>
-
-  <a-text
-    value="Zoom +"
-    position="-0.75 0.31 -2.65"
-    width="1"
-    color="white">
-  </a-text>
-
-  <a-plane
-    id="zoomOut"
-    class="control"
-    position="0.55 0.25 -2.7"
-    width="0.5"
-    height="0.28"
-    color="#333">
-  </a-plane>
-
-  <a-text
-    value="Zoom -"
-    position="0.35 0.31 -2.65"
-    width="1"
+    width="1.35"
     color="white">
   </a-text>
 
@@ -103,7 +67,7 @@
       visible="false"
       fuse="true"
       fuse-timeout="1000"
-      raycaster="objects: .hotspot, .control"
+      raycaster="objects: .hotspot"
       color="black">
     </a-cursor>
   </a-camera>
@@ -111,18 +75,15 @@
 </a-scene>
 
 <script>
-
 const infoPanel = document.querySelector('#infoPanel');
 const infoText = document.querySelector('#infoText');
 const welcome = document.querySelector('#welcome');
 const gazeCursor = document.querySelector('#gazeCursor');
-const paintingGroup = document.querySelector('#paintingGroup');
 
 let pageReady = false;
 let closeTimer = null;
 let activeHotspot = null;
 let lastTextChangeTime = 0;
-let zoomLevel = 1;
 
 function showInfo(text, hotspot) {
   clearTimeout(closeTimer);
@@ -135,20 +96,20 @@ function showInfo(text, hotspot) {
 
   const pos = hotspot.getAttribute('position');
 
-  let panelX = pos.x + 0.95;
-  let textX = pos.x + 0.30;
+  let panelX = pos.x + 0.68;
+  let textX = pos.x + 0.18;
 
   if (pos.x > 0.8) {
-    panelX = pos.x - 0.95;
-    textX = pos.x - 1.55;
+    panelX = pos.x - 0.68;
+    textX = pos.x - 1.13;
   }
 
-  let panelY = pos.y + 0.25;
-  let textY = pos.y + 0.48;
+  let panelY = pos.y + 0.22;
+  let textY = pos.y + 0.42;
 
   if (pos.y > 2.0) {
-    panelY = pos.y - 0.55;
-    textY = pos.y - 0.32;
+    panelY = pos.y - 0.42;
+    textY = pos.y - 0.22;
   }
 
   infoPanel.setAttribute('position', `${panelX} ${panelY} -2.8`);
@@ -205,93 +166,16 @@ function addHotspot(id, text, color='yellow') {
   });
 }
 
-function setZoom(newZoom) {
-  zoomLevel = Math.max(1, Math.min(2.5, newZoom));
-
-  paintingGroup.setAttribute(
-    'animation',
-    `property: scale; to: ${zoomLevel} ${zoomLevel} ${zoomLevel}; dur: 500; easing: easeInOutQuad`
-  );
-
-  hideInfo();
-}
-
-document.querySelector('#zoomIn').addEventListener('mouseenter', () => {
-  document.querySelector('#zoomIn').setAttribute('color', '#666');
-});
-
-document.querySelector('#zoomIn').addEventListener('mouseleave', () => {
-  document.querySelector('#zoomIn').setAttribute('color', '#333');
-});
-
-document.querySelector('#zoomIn').addEventListener('click', () => {
-  if (!pageReady) return;
-  setZoom(zoomLevel + 0.25);
-});
-
-document.querySelector('#zoomOut').addEventListener('mouseenter', () => {
-  document.querySelector('#zoomOut').setAttribute('color', '#666');
-});
-
-document.querySelector('#zoomOut').addEventListener('mouseleave', () => {
-  document.querySelector('#zoomOut').setAttribute('color', '#333');
-});
-
-document.querySelector('#zoomOut').addEventListener('click', () => {
-  if (!pageReady) return;
-  setZoom(zoomLevel - 0.25);
-});
-
-addHotspot(
-  '#captain',
-  'Captain Frans Banning Cocq\n\nLeader of the Amsterdam civic guard and the central figure of the composition.'
-);
-
-addHotspot(
-  '#lieutenant',
-  'Lieutenant Willem van Ruytenburch\n\nRecognizable by his bright yellow costume and illuminated appearance.',
-  'cyan'
-);
-
-addHotspot(
-  '#girl',
-  'The Girl with the Chicken\n\nA symbolic figure carrying objects associated with the civic guard.'
-);
-
-addHotspot(
-  '#drummer',
-  'The Drummer\n\nAdds energy and movement, helping create the feeling of a marching company.'
-);
-
-addHotspot(
-  '#flag',
-  'The Flag Bearer\n\nThe militia flag identifies the company and adds drama to the scene.'
-);
-
-addHotspot(
-  '#musketeer',
-  'The Musketeer\n\nOne of several armed guards demonstrating the company in action.'
-);
-
-addHotspot(
-  '#dog',
-  'The Dog\n\nA small detail that adds realism and movement to the composition.'
-);
-
-addHotspot(
-  '#leftGroup',
-  'Left Group of Guards\n\nThese figures create depth and lead the viewer into the painting.'
-);
-
-addHotspot(
-  '#rightGroup',
-  'Right Group of Guards\n\nBalances the composition and frames the main subjects.'
-);
-
-addHotspot(
-  '#backgroundArch',
-  'Background Architecture\n\nThe dark architectural setting enhances the dramatic lighting.'
-);
+addHotspot('#captain', 'Captain Frans Banning Cocq\n\nLeader of the Amsterdam civic guard and the central figure of the composition.');
+addHotspot('#lieutenant', 'Lieutenant Willem van Ruytenburch\n\nRecognizable by his bright yellow costume and illuminated appearance.', 'cyan');
+addHotspot('#girl', 'The Girl with the Chicken\n\nA symbolic figure carrying objects associated with the civic guard.');
+addHotspot('#drummer', 'The Drummer\n\nAdds energy and movement, helping create the feeling of a marching company.');
+addHotspot('#flag', 'The Flag Bearer\n\nThe militia flag identifies the company and adds drama to the scene.');
+addHotspot('#musketeer', 'The Musketeer\n\nOne of several armed guards demonstrating the company in action.');
+addHotspot('#dog', 'The Dog\n\nA small detail that adds realism and movement to the composition.');
+addHotspot('#leftGroup', 'Left Group of Guards\n\nThese figures create depth and lead the viewer into the painting.');
+addHotspot('#rightGroup', 'Right Group of Guards\n\nBalances the composition and frames the main subjects.');
+addHotspot('#backgroundArch', 'Background Architecture\n\nThe dark architectural setting enhances the dramatic lighting.');
 
 window.addEventListener('load', () => {
   hideInfo();
@@ -302,7 +186,6 @@ window.addEventListener('load', () => {
     welcome.setAttribute('visible', false);
   }, 3000);
 });
-
 </script>
 
 </body>
