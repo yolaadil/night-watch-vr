@@ -17,37 +17,17 @@
     height="3.45">
   </a-image>
 
-  <!-- SOFT HALOS -->
-  <a-circle id="captainHalo" position="-0.05 1.35 -2.94" radius="0.25" color="#ffe680" material="transparent:true; opacity:0.04"
-    animation="property: material.opacity; from:0.03; to:0.11; dur:2500; dir:alternate; loop:true"></a-circle>
-
-  <a-circle id="lieutenantHalo" position="0.45 1.30 -2.94" radius="0.25" color="#fff2aa" material="transparent:true; opacity:0.04"
-    animation="property: material.opacity; from:0.03; to:0.11; dur:2500; dir:alternate; loop:true"></a-circle>
-
-  <a-circle id="girlHalo" position="-0.80 1.18 -2.94" radius="0.22" color="#fff7c2" material="transparent:true; opacity:0.04"
-    animation="property: material.opacity; from:0.03; to:0.10; dur:2500; dir:alternate; loop:true"></a-circle>
-
-  <a-circle id="drummerHalo" position="1.75 1.25 -2.94" radius="0.25" color="#ffe680" material="transparent:true; opacity:0.04"
-    animation="property: material.opacity; from:0.03; to:0.10; dur:2500; dir:alternate; loop:true"></a-circle>
-
-  <a-circle id="flagHalo" position="-1.08 1.95 -2.94" radius="0.32" color="#ffe680" material="transparent:true; opacity:0.04"
-    animation="property: material.opacity; from:0.03; to:0.10; dur:2500; dir:alternate; loop:true"></a-circle>
-
-  <a-circle id="musketeerHalo" position="-1.10 1.45 -2.94" radius="0.22" color="#ffe680" material="transparent:true; opacity:0.04"
-    animation="property: material.opacity; from:0.03; to:0.10; dur:2500; dir:alternate; loop:true"></a-circle>
-
-  <a-circle id="dogHalo" position="0.95 0.75 -2.94" radius="0.18" color="#ffe680" material="transparent:true; opacity:0.04"
-    animation="property: material.opacity; from:0.03; to:0.10; dur:2500; dir:alternate; loop:true"></a-circle>
-
-  <a-circle id="leftGroupHalo" position="-1.55 1.55 -2.94" radius="0.28" color="#ffe680" material="transparent:true; opacity:0.04"
-    animation="property: material.opacity; from:0.03; to:0.10; dur:2500; dir:alternate; loop:true"></a-circle>
-
-  <a-circle id="rightGroupHalo" position="1.35 1.60 -2.94" radius="0.28" color="#ffe680" material="transparent:true; opacity:0.04"
-    animation="property: material.opacity; from:0.03; to:0.10; dur:2500; dir:alternate; loop:true"></a-circle>
-
-  <a-circle id="backgroundArchHalo" position="0.45 2.25 -2.94" radius="0.30" color="#ffe680" material="transparent:true; opacity:0.04"
-    animation="property: material.opacity; from:0.03; to:0.10; dur:2500; dir:alternate; loop:true"></a-circle>
-
+  <!-- HALOS: hidden by default -->
+  <a-circle id="captainHalo" position="-0.05 1.35 -2.94" radius="0.25" color="#ffe680" visible="false" material="transparent:true; opacity:0.22"></a-circle>
+  <a-circle id="lieutenantHalo" position="0.45 1.30 -2.94" radius="0.25" color="#fff2aa" visible="false" material="transparent:true; opacity:0.22"></a-circle>
+  <a-circle id="girlHalo" position="-0.80 1.18 -2.94" radius="0.22" color="#fff7c2" visible="false" material="transparent:true; opacity:0.22"></a-circle>
+  <a-circle id="drummerHalo" position="1.75 1.25 -2.94" radius="0.25" color="#ffe680" visible="false" material="transparent:true; opacity:0.22"></a-circle>
+  <a-circle id="flagHalo" position="-1.08 1.95 -2.94" radius="0.32" color="#ffe680" visible="false" material="transparent:true; opacity:0.22"></a-circle>
+  <a-circle id="musketeerHalo" position="-1.10 1.45 -2.94" radius="0.22" color="#ffe680" visible="false" material="transparent:true; opacity:0.22"></a-circle>
+  <a-circle id="dogHalo" position="0.95 0.75 -2.94" radius="0.18" color="#ffe680" visible="false" material="transparent:true; opacity:0.22"></a-circle>
+  <a-circle id="leftGroupHalo" position="-1.55 1.55 -2.94" radius="0.28" color="#ffe680" visible="false" material="transparent:true; opacity:0.22"></a-circle>
+  <a-circle id="rightGroupHalo" position="1.35 1.60 -2.94" radius="0.28" color="#ffe680" visible="false" material="transparent:true; opacity:0.22"></a-circle>
+  <a-circle id="backgroundArchHalo" position="0.45 2.25 -2.94" radius="0.30" color="#ffe680" visible="false" material="transparent:true; opacity:0.22"></a-circle>
 
   <!-- INVISIBLE HOTSPOTS -->
   <a-plane class="hotspot" id="captain" position="-0.05 1.35 -2.95" width="0.35" height="0.75" material="opacity:0; transparent:true"></a-plane>
@@ -95,7 +75,7 @@
       id="gazeCursor"
       visible="false"
       fuse="true"
-      fuse-timeout="1000"
+      fuse-timeout="3000"
       raycaster="objects: .hotspot"
       color="black">
     </a-cursor>
@@ -117,6 +97,23 @@ let lastTextChangeTime = 0;
 function getHaloForHotspot(id) {
   const cleanId = id.replace('#', '');
   return document.querySelector('#' + cleanId + 'Halo');
+}
+
+function showHalo(halo) {
+  if (!halo) return;
+
+  halo.setAttribute('visible', true);
+  halo.setAttribute(
+    'animation',
+    'property: material.opacity; from:0.12; to:0.28; dur:900; dir:alternate; loop:true'
+  );
+}
+
+function hideHalo(halo) {
+  if (!halo) return;
+
+  halo.removeAttribute('animation');
+  halo.setAttribute('visible', false);
 }
 
 function showInfo(text, hotspot) {
@@ -171,35 +168,19 @@ function hideInfoDelayed(hotspot) {
   }, 1000);
 }
 
-function addHotspot(id, text, color='yellow') {
+function addHotspot(id, text) {
   const el = document.querySelector(id);
   const halo = getHaloForHotspot(id);
 
-  el.addEventListener('mouseenter', () => {
-    if (!pageReady) return;
-
-    clearTimeout(closeTimer);
-
-    if (halo) {
-      halo.removeAttribute('animation');
-      halo.setAttribute('material', 'transparent:true; opacity:0.22');
-    }
-  });
-
   el.addEventListener('click', () => {
     if (!pageReady) return;
+
+    showHalo(halo);
     showInfo(text, el);
   });
 
   el.addEventListener('mouseleave', () => {
-    if (halo) {
-      halo.setAttribute('material', 'transparent:true; opacity:0.04');
-      halo.setAttribute(
-        'animation',
-        'property: material.opacity; from:0.03; to:0.10; dur:2500; dir:alternate; loop:true'
-      );
-    }
-
+    hideHalo(halo);
     hideInfoDelayed(el);
   });
 }
